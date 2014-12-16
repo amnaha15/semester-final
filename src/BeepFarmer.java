@@ -7,6 +7,11 @@ import org.asl.karelx.Farmer;
 public class BeepFarmer extends Farmer {
 
 	//  TODO Add one or more constructors, as needed
+	 
+	public BeepFarmer(int x, int y, int beeps){
+		super(x, y, beeps);
+	}
+	
 	
 	/**
 	 * Access all locations in a rectangular garden and pick up any beepers found
@@ -20,6 +25,20 @@ public class BeepFarmer extends Farmer {
 	 */
 	public void reap(int width, int height) {
 		// TODO You implement this
+		int startX = 3;
+		
+		
+		for(int i = 0; i <width; i++){
+		teleport(startX + i, 5);
+			for(int k = 0; k< height; k++){
+				while(nextToABeeper()){
+					pickBeeper();
+				}
+				if(frontIsClear()){
+					move();
+				}
+			}
+		}
 	}
 	
 	/**

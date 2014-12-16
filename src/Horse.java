@@ -1,5 +1,7 @@
 import org.asl.karelx.Wanderer;
 
+import edu.fcps.karel2.Display;
+
 /**
  * Represents a horse wandering around aimlessly in a pasture
  *
@@ -7,6 +9,9 @@ import org.asl.karelx.Wanderer;
 public class Horse extends Wanderer {
 
 	//  TODO Add one or more constructors, as needed
+	public Horse(int x, int y){
+		super(x, y);
+	}
 	
 	/**
 	 * Wander around in random directions until a specified number of steps have been taken.
@@ -19,5 +24,33 @@ public class Horse extends Wanderer {
 	 */
 	public void wander(int count, int timer) {
 		// TODO You implement this
+		
+		int c = 0;
+		int t = 0;
+		int rand;
+		
+		while(c < count && t < timer){
+		
+			rand = (int)(Math.random()*2);
+		
+			if(rand == 0){
+				turnLeft();
+			}else if (rand == 1){
+				turnRight();
+			}else if(rand == 2){
+				turnAround();
+			}
+			if(frontIsClear()){
+				move();
+				c++;
+			} 
+			if(c%timer == 0){
+				putBeeper();
+				t++;
+			}
+		}
+		
+		
+		
 	}
 }
